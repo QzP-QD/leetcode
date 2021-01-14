@@ -15,13 +15,13 @@
 //     }
 // };
 
-class Solution {
+class Solution1 {       //µÝ¹é·¨
 public:
     vector<int> preorder(Node* root) {
         vector<int> result;
         if(root == nullptr)
             return result;
-        else 
+        else
             recursivepre(root, result);
         return result;
     }
@@ -35,5 +35,29 @@ public:
             recursivepre(root->children[i], result);
         }
         return ;
+    }
+};
+
+
+class Solution2 {       //µü´ú·¨
+public:
+    vector<int> preorder(Node* root) {
+        vector<int> result;
+        if(root == nullptr)
+        {
+            return result;
+        }
+        stack<Node*> mystack;
+        mystack.push(root);
+        while(!mystack.empty()){
+            Node* cur = mystack.top();
+            mystack.pop();
+            result.push_back(cur->val);
+            for(int i = cur->children.size() - 1 ; i >= 0 ; i --){
+                mystack.push(cur->children[i]);
+            }
+        }
+
+        return result;
     }
 };
